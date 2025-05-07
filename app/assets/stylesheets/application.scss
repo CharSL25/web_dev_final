@@ -1,0 +1,23 @@
+@import "bootstrap";
+
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.task-completed {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.task-priority {
+  font-weight: bold;
+}
+
+.alert-notice {
+  @extend .alert-success;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}

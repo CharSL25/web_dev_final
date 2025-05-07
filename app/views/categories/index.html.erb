@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>My Categories</h1>
+  <%= link_to "New Category", new_category_path, class: "btn btn-primary" %>
+</div>
+
+<% if @categories.any? %>
+  <div class="list-group">
+    <% @categories.each do |category| %>
+      <%= link_to category_path(category), class: "list-group-item list-group-item-action" do %>
+        <div class="d-flex justify-content-between align-items-center">
+          <h5><%= category.name %></h5>
+          <span class="badge bg-primary rounded-pill"><%= category.tasks.count %></span>
+        </div>
+        <p class="mb-1"><%= truncate(category.description, length: 100) %></p>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-info">
+    No categories yet. Create your first category!
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>My Tasks</h1>
+  <div>
+    <%= link_to "Completed Tasks", completed_tasks_path, class: "btn btn-outline-secondary me-2" %>
+    <%= link_to "New Task", new_task_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+<% if @tasks.any? %>
+  <div class="list-group">
+    <% @tasks.each do |task| %>
+      <div class="list-group-item <%= 'list-group-item-success' if task.completed %> <%= 'list-group-item-danger' if task.priority && !task.completed %>">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5>
+              <%= task.completed ? "✓" : "○" %>
+              <%= link_to task.title, task, class: "#{'text-decoration-line-through' if task.completed}" %>
+              <% if task.category %><span class="badge bg-secondary ms-2"><%= task.category.name %></span><% end %>
+            </h5>
+          </div>
+          <div>
+            <%= link_to "Edit", edit_task_path(task), class: "btn btn-sm btn-outline-secondary me-2" %>
+            <%= button_to "Delete", task, method: :delete, 
+                         form: { data: { turbo_confirm: "Are you sure?" } }, 
+                         class: "btn btn-sm btn-outline-danger" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-info">
+    No tasks yet. Create your first task!
+  </div>
+<% end %>

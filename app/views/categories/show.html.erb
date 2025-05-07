@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h1><%= @category.name %></h1>
+    <p class="lead"><%= @category.description %></p>
+  </div>
+  
+  <div>
+    <%= link_to "Edit", edit_category_path(@category), class: "btn btn-outline-secondary me-2" %>
+    <%= button_to "Delete", @category, method: :delete, 
+                  form: { data: { turbo_confirm: "Are you sure? This will delete all tasks in this category!" } }, 
+                  class: "btn btn-outline-danger" %>
+  </div>
+</div>
+
+<h3>Tasks in this category</h3>
+
+<% if @tasks.any? %>
+  <div class="list-group mb-4">
+    <% @tasks.each do |task| %>
+      <%= link_to task_path(task), class: "list-group-item list-group-item-action" do %>
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5>
+              <%= task.completed ? "✓" : "○" %>
+              <%= task.title %>
+              <% if task.priority %><span class="badge bg-danger ms-2">Priority</span><% end %>
+            </h5>
+          </div>
+          <div>
+            <%= button_to "Delete", task, method: :delete, 
+                         form: { data: { turbo_confirm: "Are you sure?" } }, 
+                         class: "btn btn-sm btn-outline-danger" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-info">
+    No tasks in this category yet. <%= link_to "Create one now", new_task_path(category_id: @category.id) %>
+  </div>
+<% end %>
+
+<%= link_to "Back to categories", categories_path, class: "btn btn-secondary" %>

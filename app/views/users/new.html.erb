@@ -1,0 +1,47 @@
+<h1>Sign Up</h1>
+
+<%= form_with model: @user, url: sign_up_path do |form| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <% @user.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :first_name, class: "form-label" %>
+    <%= form.text_field :first_name, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :last_name, class: "form-label" %>
+    <%= form.text_field :last_name, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :username, class: "form-label" %>
+    <%= form.text_field :username, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.email_field :email, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password, class: "form-label" %>
+    <%= form.password_field :password, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password_confirmation, class: "form-label" %>
+    <%= form.password_field :password_confirmation, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit "Sign Up", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<p>Already have an account? <%= link_to "Login here!", login_path %></p>

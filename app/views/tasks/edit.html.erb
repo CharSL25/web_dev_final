@@ -1,0 +1,37 @@
+<h1><%= action_name.capitalize %> Task</h1>
+
+<%= form_with model: @task do |form| %>
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control", rows: 3 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :category_id, "Category", class: "form-label" %>
+    <%= form.select :category_id, 
+                    options_from_collection_for_select(@categories, :id, :name, @task.category_id),
+                    { include_blank: "No Category" }, 
+                    class: "form-select" %>
+  </div>
+
+  <div class="mb-3 form-check">
+    <%= form.check_box :priority, class: "form-check-input" %>
+    <%= form.label :priority, "Mark as priority", class: "form-check-label" %>
+  </div>
+
+  <div class="mb-3 form-check">
+    <%= form.check_box :completed, class: "form-check-input" %>
+    <%= form.label :completed, "Mark as completed", class: "form-check-label" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to "Back to tasks", tasks_path, class: "btn btn-secondary" %>
