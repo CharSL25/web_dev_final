@@ -1,4 +1,4 @@
-<h1><%= action_name.capitalize %> Task</h1>
+<h1>New Task</h1>
 
 <%= form_with model: @task do |form| %>
   <div class="mb-3">
@@ -12,12 +12,15 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :category_id, "Category", class: "form-label" %>
-    <%= form.select :category_id, 
-                    options_from_collection_for_select(@categories, :id, :name, @task.category_id),
-                    { include_blank: "No Category" }, 
-                    class: "form-select" %>
-  </div>
+  <%= form.label :category_id, "Category (optional)", class: "form-label" %>
+  <%= form.select :category_id, 
+        options_for_select(
+          Category.order(:name).map { |c| [c.name, c.id] },
+          @task.category_id
+        ),
+        { include_blank: "Select a category..." },
+        class: "form-select" %>
+</div>
 
   <div class="mb-3 form-check">
     <%= form.check_box :priority, class: "form-check-input" %>
@@ -30,8 +33,7 @@
   </div>
 
   <div class="mb-3">
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit "Create Task", class: "btn btn-primary" %>
+    <%= link_to "Cancel", tasks_path, class: "btn btn-secondary" %>
   </div>
 <% end %>
-
-<%= link_to "Back to tasks", tasks_path, class: "btn btn-secondary" %>

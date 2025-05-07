@@ -14,9 +14,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    current_user.tasks.update_all(category_id: nil)
     current_user.destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: "Account deleted successfully!"
+    redirect_to root_path, notice: "Account deleted successfully"
   end
 
   private

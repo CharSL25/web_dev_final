@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, optional: true 
   
   validates :title, presence: true
   validates :completed, inclusion: { in: [true, false] }

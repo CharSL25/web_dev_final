@@ -18,12 +18,11 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new
     @task.priority = false
     @task.completed = false
-    @task.category_id = params[:category_id] if params[:category_id]
-    @categories = current_user.categories.order(:name)
+    @categories = Category.order(:name)  # Changed from current_user.categories
   end
-
+  
   def edit
-    @categories = current_user.categories.order(:name)
+    @categories = Category.order(:name)  # Changed from current_user.categories
   end
 
   def create
@@ -47,8 +46,9 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task = current_user.tasks.find(params[:id])
     @task.destroy
-    redirect_back_or_to tasks_url, notice: "Task was successfully destroyed."
+    redirect_to tasks_url, notice: "Task was successfully deleted."
   end
 
   private
