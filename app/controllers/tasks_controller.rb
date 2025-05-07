@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @tasks = current_user.tasks.includes(:category).order(created_at: :desc)
@@ -20,7 +20,7 @@ class TasksController < ApplicationController
     @task.completed = false
     @categories = Category.order(:name)  # Changed from current_user.categories
   end
-  
+
   def edit
     @categories = Category.order(:name)  # Changed from current_user.categories
   end
@@ -59,7 +59,7 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:title, :description, :completed, :priority, :category_id)
     end
-    
+
     def redirect_back_or_to(default)
       if request.referer && request.referer != request.url
         redirect_to request.referer
