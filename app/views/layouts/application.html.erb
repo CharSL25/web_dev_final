@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TodoApp</title>
+  <head>  
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <title>TodoApp</title>
   </head>
 
   <body>
@@ -19,9 +19,8 @@
     <% end %>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-      <div class="container-fluid">
-        <%= link_to "ToDo App", root_path, class: "navbar-brand" %>
-      
+      <div class="container-fluid">        
+        <%= link_to raw('<i class="fa-solid fa-list-check me-2"></i>ToDo App'), root_path, class: "navbar-brand brand-outline-primary me-2" %>
         <div class="d-flex align-items-center">
           <% if current_user %>
             

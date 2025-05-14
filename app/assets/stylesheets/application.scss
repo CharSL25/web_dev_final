@@ -1,9 +1,15 @@
 @import "bootstrap";
+@import "font-awesome";
 
-body {
-  padding-top: 20px;
+
+body {  
   padding-bottom: 40px;
+  max-width: 600px;
+  margin: 0 auto;  
+  background: #f8f9fa; 
 }
+
+
 
 .task-completed {
   text-decoration: line-through;
@@ -20,4 +26,14 @@ body {
 
 .alert-alert {
   @extend .alert-danger;
+}
+
+
+.navbar-brand.custom-border {
+  border: 2px solid black; // Bootstrap primary color
+  border-radius: 0.25rem;
+  padding: 0.25rem 1rem;
+  background: #fff;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
