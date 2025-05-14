@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get "sign_up", to: "users#new"
   post "sign_up", to: "users#create"
+  get "account", to: "users#account"
   delete "account", to: "users#destroy"
 
   get "login", to: "sessions#new"

@@ -20,22 +20,20 @@
 
     <nav class="navbar navbar-expand-lg navbar-light tile-color border mb-4 rounded">
       <div class="container-fluid">        
-        <%= link_to raw('<i class="fa-solid fa-list-check me-2"></i>ToDo App'), root_path, class: "navbar-brand " %>
+        <%= link_to raw('<i class="fa-solid fa-list-check me-2"></i>ToDo App'), root_path, class: "navbar-brand" %>
         <div class="d-flex align-items-center">
           <% if current_user %>
-            
-            <%= link_to "My Account", "#", class: "btn btn-outline-secondary me-2" %>
-            <%= button_to "Delete Account", account_path, method: :delete, 
-                      form: { data: { turbo_confirm: "Are you sure? This will delete all your data permanently!" } }, 
-                      class: "btn btn-outline-danger me-2" %>
-          <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-primary" %>
-        <% else %>
-          <%= link_to "Login", login_path, class: "btn btn-outline-primary me-2" %>
-          <%= link_to "Sign Up", sign_up_path, class: "btn btn-primary" %>
-        <% end %>
+            <%= link_to "ToDos", root_path, class: "btn text-dark btn-outline-light me-2" %>
+            <%= link_to "Categories", categories_path, class: "btn text-dark btn-outline-light me-2" %>
+            <%= link_to "Completed ToDos", completed_tasks_path, class: "btn text-dark btn-outline-light me-2" %>
+            <%= link_to "Account", account_path, class: "btn text-dark btn-outline-light me-2" %>
+          <% else %>
+            <%= link_to "Login", login_path, class: "btn btn-outline-primary me-2" %>
+            <%= link_to "Sign Up", sign_up_path, class: "btn btn-primary" %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
     
     <% if notice %>
       <p class="notice"><%= notice %></p>

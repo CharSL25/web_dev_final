@@ -1,8 +1,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
-  <h1>My Tasks</h1>
+  <h1> <%= current_user.first_name %>'s Tasks</h1>
   <div>
-    <%= link_to "Completed Tasks", completed_tasks_path, class: "btn btn-outline-secondary me-2" %>
-    <%= link_to "New Task", new_task_path, class: "btn btn-primary" %>
+      <%= link_to "New Task", new_task_path, class: "btn btn-primary" %>
   </div>
 </div>
 
@@ -18,7 +17,7 @@
               <% if task.category %><span class="badge bg-secondary ms-2"><%= task.category.name %></span><% end %>
             </h5>
           </div>
-          <div>
+          <div class="d-flex gap-2">
             <%= link_to "Edit", edit_task_path(task), class: "btn btn-sm btn-outline-secondary me-2" %>
             <%= button_to "Delete", task, method: :delete, 
                          form: { data: { turbo_confirm: "Are you sure?" } }, 

@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  PREDEFINED_CATEGORIES = [
+  CATEGORIES = [
     "Food",
     "Travel",
     "Education",
@@ -7,8 +7,10 @@ class Category < ApplicationRecord
     "Technology"
   ].freeze
 
-  def self.predefined
-    PREDEFINED_CATEGORIES
+  belongs_to :user
+
+  def self.defined
+    CATEGORIES
   end
   has_many :tasks, dependent: :nullify
   validates :name, presence: true, uniqueness: true

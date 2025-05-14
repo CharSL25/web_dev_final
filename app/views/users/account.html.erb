@@ -1,0 +1,18 @@
+<div class="text-center my-4">
+  <h3><%= "#{current_user.first_name} #{current_user.last_name}" %></h3>
+</div>
+
+
+<div class="d-flex justify-content-center gap-2 my-4">
+  <%= link_to 'Log Out',
+              logout_path,
+              method: :delete,
+              data: { confirm: 'Are you sure you want to log out?' },
+              class: "btn btn-warning" %>
+
+  <%= link_to 'Delete Account',
+              account_path,
+              method: :delete,
+              data: { confirm: 'This cannot be undone. Are you sure?' },
+              class: "btn btn-danger" %>
+</div>
