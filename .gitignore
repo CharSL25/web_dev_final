@@ -31,6 +31,10 @@
 
 /public/assets
 
+# Explicitly allow checking in your Rails credentials keys
+!config/master.key
+!config/credentials/production.key
+
 
 
 
