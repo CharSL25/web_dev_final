@@ -63,4 +63,4 @@ gem "sassc-rails"
 
 gem "font-awesome-sass", "~> 6.0"
 
-gem "pg", "~> 1.4" 
+gem "pg", "~> 1.6" 
